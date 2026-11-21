@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>활동 기록 | 일단 푸시 Team Portfolio</title>
+    <link rel="stylesheet" href="page.css">
+    <link rel="stylesheet" href="activity.css">
+</head>
+<body>
+
+    <!-- 상단 고정 헤더 -->
+    <header id="main-header" class="scrolled">
+        <a href="index.html#home" class="logo-link">
+            <div class="logo">OPENSOURCE</div>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html#home" class="nav-link">홈</a></li>
+                <li><a href="index.html#team" class="nav-link">팀</a></li>
+                <li><a href="index.html#project" class="nav-link">프로젝트 소개</a></li>
+                <li><a href="gallery.html" class="nav-link">갤러리</a></li>
+                <li><a href="process.html" class="nav-link active">개발 과정</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 페이지 상단 소개 영역 -->
+    <section class="activity-hero">
+        <span class="team-brand">ACTIVITY LOG</span>
+        <h1 class="activity-main-title">활동 기록</h1>
+        <p class="section-desc">회의 기록, 개발 과정, 그리고 팀 결과물을 정리한 페이지입니다.</p>
+    </section>
+
+    <!-- 회의 기록 섹션 -->
+    <section id="meetings" class="activity-section">
+        <h2 class="section-title">MEETING NOTES</h2>
+        <p class="section-desc">주요 논의 사항을 기록합니다.</p>
+
+        <div class="log-list">
+            <!-- 회의 카드 1 -->
+            <article class="log-card">
+                <div class="log-meta">
+                    <span class="log-date">2026.11.05</span>
+                    <span class="log-badge">회의 기록 01</span>
+                </div>
+                <h3 class="log-title">팀명 확정 및 메인 페이지 디자인 확정</h3>
+                <p class="log-text">
+                    팀명을 '일단 푸시'로 정하고, 어두운 배경(#0a0b0d)에 골드(#d4af37) 포인트를 주는 메인 페이지 디자인 방향을 확정했습니다.
+                </p>
+                <div class="log-footer">참석: 전체 팀원 · 결정: 메인 페이지 디자인 컨셉 확정</div>
+            </article>
+
+            <!-- 회의 카드 2 -->
+            <article class="log-card">
+                <div class="log-meta">
+                    <span class="log-date">2026.11.12</span>
+                    <span class="log-badge">회의 기록 02</span>
+                </div>
+                <h3 class="log-title">페이지 별 역할 분담</h3>
+                <p class="log-text">
+                    메인 페이지, 갤러리, 개발 과정/활동 기록 등 각 페이지와 기능별 담당 역할을 나누어 작업을 진행하기로 했습니다.
+                </p>
+                <div class="log-footer">참석: 전체 팀원 · 결정: 페이지별 담당자 배정 완료</div>
+            </article>
+        </div>
+    </section>
+
+    <!-- 개발 과정 섹션 -->
+    <section id="dev-process" class="activity-section">
+        <h2 class="section-title">DEVELOPMENT PROCESS</h2>
+        <p class="section-desc">순서대로 진행된 작업 흐름입니다.</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-step">STEP 01</div>
+                <div class="timeline-content">
+                    <h3>초기 저장소 생성 및 기본 레이아웃 세팅</h3>
+                    <p><code>index.html</code>, <code>page.css</code>, <code>page.js</code> 구조를 잡고 기본 화면 섹션을 구성했습니다.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-step">STEP 02</div>
+                <div class="timeline-content">
+                    <h3>하위 페이지 연결 및 콘텐츠 제작</h3>
+                    <p>활동 기록 페이지를 구성하고 기존 디자인 스타일과 이어지도록 스타일을 맞췄습니다.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-step">STEP 03</div>
+                <div class="timeline-content">
+                    <h3>검수 및 반응형 확인</h3>
+                    <p>페이지 이동, 결과물 반영 상태를 점검합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 결과물 섹션 -->
+    <section id="outcomes" class="activity-section">
+        <h2 class="section-title">DELIVERABLES</h2>
+        <p class="section-desc">팀원들이 만든 결과물을 모으는 공간입니다.</p>
+
+        <div class="outcome-slot">
+            <!-- 여기에 결과물 넣어주세요: 각 팀원이 완성한 사진(<img src="..." alt="...">)이나 코드 블록 등을 이곳에 추가해 주세요. -->
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>© 2026 OPENSOURCE. Built for Team Portfolio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
