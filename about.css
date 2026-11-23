@@ -1,25 +1,114 @@
-.about-page {
-  box-sizing: border-box;
-  max-width: 780px;
-  margin: 32px auto;
-  padding: 0 20px;
+
+/* 전체 페이지 */
+body {
+  margin: 0;
+  background-color: #f5f5f5;
+  color: #212529;
+  font-family: Arial, "Malgun Gothic", sans-serif;
   line-height: 1.7;
 }
 
-.about-page section {
-  margin-top: 20px;
-  padding: 16px;
-  border: 1px solid #d8dfeb;
-  border-radius: 12px;
-  background-color: #f2f6ff;
-  color: #202b40;
+/* 메인 문서 */
+.about-page {
+  box-sizing: border-box;
+  max-width: 1000px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 30px 40px;
+  background-color: #ffffff;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 
+/* 링크 */
+.about-page a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+.about-page a:hover {
+  text-decoration: underline;
+}
+
+/* 메인 제목 */
+.about-page h1 {
+  margin-top: 25px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #0084ff;
+  font-size: 28px;
+  color: #212529;
+}
+
+/* 설명 */
+.about-page > p {
+  margin: 20px 0;
+}
+
+/* 문서 섹션 */
+.about-page section {
+  margin-top: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  color: #212529;
+}
+
+/* 소제목 */
 .about-page h2 {
   margin-top: 0;
+  margin-bottom: 12px;
+  padding: 7px 12px;
+  border-left: 5px solid #0084ff;
+  background-color: #f2f2f2;
+  font-size: 21px;
+  color: #212529;
 }
 
+/* 문단 */
+.about-page section p {
+  margin: 12px 0;
+  padding-left: 12px;
+}
+
+/* 목록 */
+.about-page ol {
+  margin: 12px 0;
+  padding: 12px 12px 12px 40px;
+  border: 1px solid #ddd;
+  background-color: #fafafa;
+}
+
+.about-page li {
+  padding: 3px 0;
+}
+
+/* 버튼 */
 .about-page button {
-  padding: 8px 12px;
+  padding: 6px 12px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #333;
   cursor: pointer;
+  font-size: 14px;
+}
+
+.about-page button:hover {
+  background-color: #e5e5e5;
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+  .about-page {
+    padding: 20px 16px;
+  }
+
+  .about-page h1 {
+    font-size: 23px;
+  }
+
+  .about-page h2 {
+    font-size: 18px;
+  }
 }
