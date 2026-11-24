@@ -10,15 +10,20 @@
 
     <header id="main-header" class="top-bar">
         <nav class="nav-container" aria-label="주 메뉴">
-            <a href="./page.html" class="logo">팀 위키</a>
+            <a href="./index.html" class="logo">팀 위키</a>
 
             <div class="top-menu">
-                <a href="./page.html">메인</a>
+                <a href="./index.html">메인</a>
                 <a href="./about.html">팀 소개</a>
                 <a href="./team.html">팀원 소개</a>
                 <a href="./gallery.html" aria-current="page">갤러리</a>
                 <a href="./process.html">개발 과정</a>
             </div>
+
+            <form class="search-form" id="search-form" role="search">
+                <input type="search" id="search-input" placeholder="문서 내 검색..." autocomplete="off">
+                <button type="submit" aria-label="검색">검색</button>
+            </form>
         </nav>
     </header>
 
@@ -26,7 +31,7 @@
         <article class="wiki-article">
 
             <div class="breadcrumb">
-                <a href="./page.html">메인</a>
+                <a href="./index.html">메인</a>
                 <span></span>
                 <span>프로젝트 갤러리</span>
             </div>
@@ -191,11 +196,12 @@
             <footer id="site-footer" class="document-footer">
                 <p>이 문서는 팀 프로젝트의 프로젝트 갤러리 문서입니다.</p>
 
-                <a href="./page.html" class="back-link">← 메인으로 돌아가기</a>
+                <a href="./index.html" class="back-link">← 메인으로 돌아가기</a>
             </footer>
 
         </article>
     </main>
 
+    <script src="./gallery.js"></script>
 </body>
 </html>
