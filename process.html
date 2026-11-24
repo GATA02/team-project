@@ -4,24 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>개발 과정 - 팀 위키</title>
-    <link rel="stylesheet" href="./gallery.css">
     <link rel="stylesheet" href="./process.css">
+    <script src="./process.js" defer></script>
 </head>
 <body>
 
     <!-- 상단 헤더 -->
     <header id="main-header" class="top-bar">
-        <nav class="nav-container" aria-label="주 메뉴">
+        <div class="nav-container">
             <a href="./page.html" class="logo">팀 위키</a>
 
-            <div class="top-menu">
+            <nav class="top-menu" aria-label="주 메뉴">
                 <a href="./page.html">메인</a>
                 <a href="./about.html">팀 소개</a>
                 <a href="./team.html">팀원 소개</a>
                 <a href="./gallery.html">갤러리</a>
                 <a href="./process.html" aria-current="page">개발 과정</a>
-            </div>
-        </nav>
+            </nav>
+            <form id="search-form" class="search-form">
+                <input type="search" id="search-input" placeholder="팀 문서 검색" aria-label="문서 검색">
+                <button type="submit">검색</button>
+            </form>
+        </div>
     </header>
 
     <!-- 메인 위키 컨테이너 -->
@@ -43,13 +47,14 @@
                 개발 과정 문서
             </div>
 
+            <hr>
             <p class="intro">프로젝트 진행 중 개최된 회의 기록과 단계별 개발 작업 흐름을 정리한 문서입니다.</p>
 
             <!-- 목차 -->
             <nav class="toc" aria-label="목차">
-                <h2 class="toc-title">목차</h2>
+                <div class="toc-header"><div class="toc-title">목차</div><button type="button" class="toc-toggle" id="toc-toggle" aria-controls="toc-list" aria-expanded="true">[접기]</button></div>
 
-                <ol class="toc-list">
+                <ol class="toc-list" id="toc-list">
                     <li>
                         <a href="#meetings">
                             <span class="section-number">1.</span> 회의 기록 (Meeting Notes)
@@ -256,7 +261,7 @@
 
                 <article class="project-card gallery-team-card">
                     <div class="project-thumb">
-                        <img src=" " alt="개발 결과물 스크린샷" onerror="this.onerror=null; this.src=' ';">
+                        <span class="placeholder">결과물 스크린샷 등록 예정</span>
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">오픈소스SW활용 팀 포트폴리오 웹사이트</h3>
