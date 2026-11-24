@@ -3,110 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>일단 푸시 Team Portfolio</title>
+    <title>일단 푸시 - 나무위키</title>
     <link rel="stylesheet" href="page.css">
 </head>
 <body>
-
-    <!-- 상단 고정 헤더 -->
-    <header id="main-header">
-        <a href="#home" class="logo-link">
-            <div class="logo">OPENSOURCE</div>
-        </a>
-        <nav>
-            <ul>
-                <!-- 같은 페이지 이동 메뉴 -->
-                <li><a href="#home" class="nav-link active">홈</a></li>
-                <li><a href="#team" class="nav-link">팀</a></li>
-                <li><a href="#project" class="nav-link">프로젝트 소개</a></li>
-                <!-- 다른 페이지 이동 메뉴 -->
-                <li><a href="./about.html">팀 소개</a></li>
-                <li><a href="gallery.html">갤러리</a></li>
-                <li><a href="process.html">개발 과정</a></li>
-            </ul>
-        </nav>
+    <!-- 상단 네비게이션 바 -->
+    <header class="nw-header" id="main-header">
+        <div class="nw-header-inner">
+            <a href="#top" class="nw-brand">나무위키</a>
+            <nav class="nw-nav" aria-label="상단 메뉴">
+                <a href="#top">최근 변경</a>
+                <a href="#sec-1">개요</a>
+                <a href="#sec-2">팀원</a>
+                <a href="#sec-3">협업</a>
+                <a href="./about.html">팀 소개</a>
+                <a href="gallery.html">갤러리</a>
+                <a href="process.html">개발 과정</a>
+            </nav>
+            <form class="nw-search" id="nw-search-form" role="search">
+                <input type="search" id="nw-search-input" placeholder="문서 내 검색..." autocomplete="off">
+                <button type="submit" aria-label="검색">검색</button>
+            </form>
+        </div>
     </header>
 
-    <!-- 홈 섹션 -->
-    <section id="home">
-        <div class="hero-content">
-            <h1>홈 화면</h1>
-            <p>웹 페이지를 간략하게 소개</p>
-        </div>
-    </section>
+    <div class="nw-container" id="top">
+        <article class="nw-article">
+            <!-- 문서 제목 + 문서 관리 탭 -->
+            <div class="nw-title-area">
+                <h1 class="nw-title">일단 푸시</h1>
+                <div class="nw-tabs">
+                    <a href="#top" class="nw-tab active">문서</a>
+                    <a href="#sec-3" class="nw-tab">토론</a>
+                    <a href="#sec-2" class="nw-tab">편집</a>
+                    <a href="#sec-4" class="nw-tab">역사</a>
+                </div>
+            </div>
 
-    <!-- 팀 소개 섹션 -->
-    <section id="team">
-        <span class="team-brand">일단 푸시</span>
-        <h2 class="section-title">TEAM MEMBERS</h2>
-        <p class="section-desc">팀의 간략한 소개 !팀 역할은 추후 수정될 수 있음. 현재는 임의!</p>
-        
-        <div class="team-grid">
-            <!-- 1번 팀원 -->
-            <div class="team-card">
-                <div class="member-avatar">
-                    <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="김대표 프로필">
-                </div>
-                <div class="member-name">이윤진</div>
-                <div class="member-role">공통 구조·레이아웃</div>
+            <!-- 분류 바 -->
+            <div class="nw-category-bar">
+                <span class="nw-category-label">분류:</span>
+                <a href="#sec-1">팀 프로젝트</a>
+                <a href="#sec-2">OPENSOURCE</a>
+                <a href="#sec-3">Git·GitHub</a>
+                <a href="#sec-3">웹 포트폴리오</a>
             </div>
-            <!-- 2번 팀원 -->
-            <div class="team-card">
-                <div class="member-avatar">
-                    <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="이개발 프로필">
-                </div>
-                <div class="member-name">박현정</div>
-                <div class="member-role">프로젝트 소개·전시</div>
-            </div>
-            <!-- 3번 팀원 -->
-            <div class="team-card">
-                <div class="member-avatar">
-                    <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="박디자인 프로필">
-                </div>
-                <div class="member-name">김서영</div>
-                <div class="member-role">페이지 콘텐츠 제작</div>
-            </div>
-            <!-- 4번 팀원 -->
-            <div class="team-card">
-                <div class="member-avatar">
-                    <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="최프론트 프로필">
-                </div>
-                <div class="member-name">이병민</div>
-                <div class="member-role">문서화·발표</div>
-            </div>
-            <!-- 5번 팀원 -->
-            <div class="team-card">
-                <div class="member-avatar">
-                    <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="정QA 프로필">
-                </div>
-                <div class="member-name">정희돈</div>
-                <div class="member-role">GitHub 협업·형상 관리</div>
-            </div>
-            <!-- 6번 팀원 -->
-            <div class="team-card">
-                <div class="member-avatar">
-                    <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="강데브 프로필">
-                </div>
-                <div class="member-name">박지훈</div>
-                <div class="member-role">인터랙션·품질 개선</div>
-            </div>
-        </div>
-    </section>
 
-    <!-- 프로젝트 소개 섹션 -->
-    <section id="project">
-        <h2 class="section-title">PROJECT PURPOSE</h2>
-        <p class="section-desc">여섯명의 팀원이 하나의 웹사이트를 공동으로 개발하며, Git과 GitHub를 활용한 협업 과정을 경험</p>
-        
-        <div class="project-text-content">
-            <p class="purpose-highlight">Git과 GitHub의 활용과 협업을 통한 능력 향상</p>
-            <p class="purpose-detail">
-                본 프로젝트는 팀원 6명이 HTML, CSS, JavaScript를 활용해 하나의 웹사이트를 완성하는 과정에서 Git과 GitHub를 활용한 협업 역량을 강화하는 것을 목적으로 합니다. 단순한 웹사이트 제작을 넘어 모든 팀원이 자신에게 배정된 기능을 직접 구현하며, 버전 및 브랜치 관리, 원격 저장소 공동 작업, Pull Request와 코드 리뷰, 역할 분담 및 일정 관리, 그리고 최종 배포와 발표에 이르는 전체 협업 프로세스를 실전처럼 경험하고 습득하는 데 중점을 둡니다.
-            </p>
-        </div>
-    </section>
+            <!-- 리드 문단 + 인포박스 -->
+            <div class="nw-lead-wrap">
+                <div class="nw-lead-text">
+                    <p>
+                        <strong>일단 푸시</strong>는 여섯 명의 팀원이 HTML, CSS, JavaScript를 바탕으로 하나의 웹사이트를 공동 개발하며,
+                        <a href="#sec-3" class="nw-link">Git</a>과 <a href="#sec-3" class="nw-link">GitHub</a> 기반 협업 프로세스를 경험하는 팀 프로젝트 단위이다.<sup class="nw-fn" data-fn="1">[1]</sup>
+                    </p>
+                    <p>
+                        웹 페이지를 간략하게 소개하는 포트폴리오 사이트를 구축하는 동시에 브랜치 관리, Pull Request, 코드 리뷰, 일정 조율, 배포 및 발표 전 과정을 수행한다.<sup class="nw-fn" data-fn="2">[2]</sup>
+                    </p>
+                </div>
 
-    <footer>
+                <!-- 우측 요약표(인포박스) -->
+                <aside class="nw-infobox" aria-label="프로젝트 요약 정보">
+                    <div class="nw-infobox-head">
+                        <div class="nw-infobox-kicker">TEAM PORTFOLIO · OPENSOURCE</div>
+                        <div class="nw-infobox-name">일단 푸시</div>
+                    </div>
+                    <table class="nw-infobox-table">
+                        <tbody>
+                            <tr>
+                                <th>프로젝트</th>
+                                <td>OPENSOURCE 팀 포트폴리오</td>
+                            </tr>
+                            <tr>
+                                <th>인원</th>
+                                <td>6명</td>
+                            </tr>
+                            <tr>
+                                <th>기술 스택</th>
+                                <td>HTML, CSS, JavaScript</td>
+                            </tr>
+                            <tr>
+                                <th>형상 관리</th>
+                                <td>Git, GitHub (PR · 코드 리뷰)</td>
+                            </tr>
+                            <tr>
+                                <th>제작 연도</th>
+                                <td>2026</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </aside>
+            </div>
+
+            <!-- 목차 (3.2 및 5 항목 제거) -->
+            <nav class="nw-toc" aria-label="목차">
+                <div class="nw-toc-header">
+                    <span class="nw-toc-title">목차</span>
+                    <button type="button" class="nw-toc-toggle" id="toc-toggle">[접기]</button>
+                </div>
+                <ol class="nw-toc-list" id="toc-list">
+                    <li><a href="#sec-1"><span class="toc-no">1.</span> 개요</a></li>
+                    <li>
+                        <a href="#sec-2"><span class="toc-no">2.</span> 팀 구성 및 역할</a>
+                        <ol>
+                            <li><a href="#sec-2-1"><span class="toc-no">2.1.</span> 역할 분담표</a></li>
+                            <li><a href="#sec-2-2"><span class="toc-no">2.2.</span> 팀원 프로필</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="#sec-3"><span class="toc-no">3.</span> 프로젝트 목적 및 협업 방식</a>
+                        <ol>
+                            <li><a href="#sec-3-1"><span class="toc-no">3.1.</span> 개발 목표</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="#sec-4"><span class="toc-no">4.</span> 관련 페이지</a></li>
+                </ol>
+            </nav>
+
+            <!-- 1. 개요 -->
+            <section class="nw-section" id="sec-1">
+                <h2 class="nw-h2">
+                    <a href="#toc-list" class="nw-sec-anchor">1.</a> 개요
+                    <button type="button" class="nw-fold-btn" data-target="body-1">[접기]</button>
+                </h2>
+                <div class="nw-section-body" id="body-1">
+                    <p>
+                        <strong>일단 푸시</strong>는 6인 공동 웹 개발을 통해 협업 역량을 기르기 위해 만든 프로젝트 팀이다. 기본 화면 구조와 소개 섹션을 중심으로 구성되며, 별도 하위 페이지로 확장할 수 있도록 설계했다.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 2. 팀 구성 및 역할 -->
+            <section class="nw-section" id="sec-2">
+                <h2 class="nw-h2">
+                    <a href="#toc-list" class="nw-sec-anchor">2.</a> 팀 구성 및 역할
+                    <button type="button" class="nw-fold-btn" data-target="body-2">[접기]</button>
+                </h2>
+                <div class="nw-section-body" id="body-2">
+                    <div class="nw-callout">
+                        <strong>안내:</strong> 팀 역할은 추후 수정될 수 있으며, 현재 표기된 역할은 임의 배정 기준이다.<sup class="nw-fn" data-fn="3">[3]</sup>
+                    </div>
+
+                    <h3 class="nw-h3" id="sec-2-1">
+                        <a href="#toc-list" class="nw-sec-anchor">2.1.</a> 역할 분담표
+                    </h3>
+                    <div class="nw-table-scroll">
+                        <table class="nw-table">
+                            <thead>
+                                <tr>
+                                    <th>순번</th>
+                                    <th>이름</th>
+                                    <th>담당 역할</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><strong>이윤진</strong></td>
+                                    <td>공통 구조·레이아웃</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><strong>박현정</strong></td>
+                                    <td>프로젝트 소개·전시</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><strong>김서영</strong></td>
+                                    <td>페이지 콘텐츠 제작</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td><strong>이병민</strong></td>
+                                    <td>문서화·발표</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td><strong>정희돈</strong></td>
+                                    <td>GitHub 협업·형상 관리</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td><strong>박지훈</strong></td>
+                                    <td>인터랙션·품질 개선</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3 class="nw-h3" id="sec-2-2">
+                        <a href="#toc-list" class="nw-sec-anchor">2.2.</a> 팀원 프로필
+                    </h3>
+                    <div class="nw-member-grid">
+                        <div class="nw-member-card">
+                            <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="이윤진 프로필">
+                            <div>
+                                <div class="nw-member-name">이윤진</div>
+                                <div class="nw-member-role">공통 구조·레이아웃</div>
+                            </div>
+                        </div>
+                        <div class="nw-member-card">
+                            <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="박현정 프로필">
+                            <div>
+                                <div class="nw-member-name">박현정</div>
+                                <div class="nw-member-role">프로젝트 소개·전시</div>
+                            </div>
+                        </div>
+                        <div class="nw-member-card">
+                            <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="김서영 프로필">
+                            <div>
+                                <div class="nw-member-name">김서영</div>
+                                <div class="nw-member-role">페이지 콘텐츠 제작</div>
+                            </div>
+                        </div>
+                        <div class="nw-member-card">
+                            <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="이병민 프로필">
+                            <div>
+                                <div class="nw-member-name">이병민</div>
+                                <div class="nw-member-role">문서화·발표</div>
+                            </div>
+                        </div>
+                        <div class="nw-member-card">
+                            <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="정희돈 프로필">
+                            <div>
+                                <div class="nw-member-name">정희돈</div>
+                                <div class="nw-member-role">GitHub 협업·형상 관리</div>
+                            </div>
+                        </div>
+                        <div class="nw-member-card">
+                            <img src="img/TqAc5tV7B-Jon4rFhLPMLG_tFVBqPuIcpa9gakSk6mkTLwP-J3RTKNYezQJJ2XDpJKjO4UvQ-_wqEQyaGtWnaKTAktzK8Jzt_gEs2-T8VQGL82gMuM_CixctR4n5XRSIZhz93WqYK-uMx1APax8y5g.webp" alt="박지훈 프로필">
+                            <div>
+                                <div class="nw-member-name">박지훈</div>
+                                <div class="nw-member-role">인터랙션·품질 개선</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. 프로젝트 목적 및 협업 방식 -->
+            <section class="nw-section" id="sec-3">
+                <h2 class="nw-h2">
+                    <a href="#toc-list" class="nw-sec-anchor">3.</a> 프로젝트 목적 및 협업 방식
+                    <button type="button" class="nw-fold-btn" data-target="body-3">[접기]</button>
+                </h2>
+                <div class="nw-section-body" id="body-3">
+                    <h3 class="nw-h3" id="sec-3-1">
+                        <a href="#toc-list" class="nw-sec-anchor">3.1.</a> 개발 목표
+                    </h3>
+                    <blockquote class="nw-quote">
+                        <strong>Git과 GitHub의 활용과 협업을 통한 능력 향상</strong>
+                    </blockquote>
+                    <p>
+                        본 프로젝트는 팀원 6명이 HTML, CSS, JavaScript를 활용해 하나의 웹사이트를 완성하는 과정에서 Git과 GitHub를 활용한 협업 역량을 강화하는 것을 목적으로 한다.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 4. 관련 페이지 -->
+            <section class="nw-section" id="sec-4">
+                <h2 class="nw-h2">
+                    <a href="#toc-list" class="nw-sec-anchor">4.</a> 관련 페이지
+                    <button type="button" class="nw-fold-btn" data-target="body-4">[접기]</button>
+                </h2>
+                <div class="nw-section-body" id="body-4">
+                    <div class="nw-navbox">
+                        <div class="nw-navbox-head">
+                            <span>OPENSOURCE · 일단 푸시 문서 모음</span>
+                            <button type="button" class="nw-navbox-toggle" id="navbox-toggle">[접기]</button>
+                        </div>
+                        <div class="nw-navbox-body" id="navbox-body">
+                            <a href="./about.html">팀 소개</a>
+                            <a href="gallery.html">갤러리</a>
+                            <a href="process.html">개발 과정</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </div>
+
+    <!-- 각주 호버/클릭 팝오버 -->
+    <div class="nw-fn-popover" id="fn-popover" role="tooltip" hidden></div>
+
+    <footer class="nw-footer">
         <p>© 2026 OPENSOURCE. Built for Team Portfolio. All rights reserved.</p>
     </footer>
 
