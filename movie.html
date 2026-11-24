@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CINEPICK — 영화 추천 큐레이션</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #0b0d12;
+            --bg-surface: #131722;
+            --bg-card: #181d2a;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent: #e50914;
+            --accent-hover: #f40612;
+            --gold: #fbbf24;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 상단 고정 네비게이션 */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 68px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(11, 13, 18, 0.92), rgba(11, 13, 18, 0));
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(11, 13, 18, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .brand-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .search-box {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-subtle);
+            border-radius: 999px;
+            padding: 8px 16px 8px 36px;
+            color: #ffffff;
+            font-size: 13.5px;
+            width: 230px;
+            outline: none;
+            transition: all 0.25s ease;
+        }
+
+        .search-box input:focus {
+            width: 270px;
+            background: rgba(255, 255, 255, 0.13);
+            border-color: rgba(255, 255, 255, 0.28);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 13px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .wishlist-counter {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--border-subtle);
+            color: #ffffff;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .wishlist-counter:hover,
+        .wishlist-counter.active {
+            background: rgba(229, 9, 20, 0.2);
+            border-color: var(--accent);
+        }
+
+        /* 히어로 배너 */
+        .hero {
+            position: relative;
+            min-height: 76vh;
+            padding: 130px 5% 70px;
+            display: flex;
+            align-items: flex-end;
+            background:
+                linear-gradient(to top, var(--bg-main) 8%, rgba(11, 13, 18, 0.45) 55%, rgba(11, 13, 18, 0.7) 100%),
+                linear-gradient(to right, rgba(11, 13, 18, 0.92) 25%, rgba(11, 13, 18, 0.2) 80%),
+                url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=85') center/cover no-repeat;
+        }
+
+        .hero-inner {
+            max-width: 640px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(229, 9, 20, 0.18);
+            border: 1px solid rgba(229, 9, 20, 0.45);
+            color: #ff6b72;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 999px;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(34px, 5vw, 54px);
+            font-weight: 800;
+            line-height: 1.18;
+            letter-spacing: -0.5px;
+            margin-bottom: 14px;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+
+        .rating {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .hero-desc {
+            font-size: 15.5px;
+            color: #cbd5e1;
+            margin-bottom: 26px;
+            word-break: keep-all;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 14.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* 메인 컨텐츠 영역 */
+        main {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 20px 5% 80px;
+        }
+
+        .section-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 26px;
+            flex-wrap: wrap;
+        }
+
+        .section-heading {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .genre-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .pill {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pill:hover {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .pill.active {
+            background: #ffffff;
+            color: #0b0d12;
+            border-color: #ffffff;
+        }
+
+        /* 영화 카드 그리드 */
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .movie-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.22);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
+        }
+
+        .poster-wrap {
+            position: relative;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            cursor: pointer;
+            background: #1e2433;
+        }
+
+        .poster-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .movie-card:hover .poster-wrap img {
+            transform: scale(1.06);
+        }
+
+        .genre-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(11, 13, 18, 0.78);
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            color: #f8fafc;
+            font-size: 11.5px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .like-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(11, 13, 18, 0.72);
+            backdrop-filter: blur(6px);
+            color: #cbd5e1;
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .like-btn.liked {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #ffffff;
+        }
+
+        .card-body {
+            padding: 18px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        .card-title:hover {
+            color: #ff6b72;
+        }
+
+        .card-score {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+
+        .card-sub {
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .card-summary {
+            font-size: 13.5px;
+            color: #cbd5e1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-subtle);
+            font-size: 12.5px;
+            color: var(--text-secondary);
+        }
+
+        .detail-trigger {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .detail-trigger:hover {
+            color: var(--accent);
+        }
+
+        .empty-box {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 64px 20px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* 상세 보기 모달 */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 7, 11, 0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 200;
+        }
+
+        .modal-overlay[hidden] {
+            display: none;
+        }
+
+        .modal-box {
+            position: relative;
+            width: 100%;
+            max-width: 760px;
+            background: var(--bg-surface);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(11, 13, 18, 0.75);
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .modal-hero {
+            position: relative;
+            height: 280px;
+        }
+
+        .modal-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--bg-surface) 6%, transparent 70%);
+        }
+
+        .modal-content {
+            padding: 0 28px 28px;
+            margin-top: -36px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal-tags {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .modal-tag {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .modal-content h2 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .modal-info-line {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .modal-story {
+            font-size: 15px;
+            color: #e2e8f0;
+            margin-bottom: 18px;
+        }
+
+        .modal-highlight {
+            background: rgba(229, 9, 20, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 0 8px 8px 0;
+            font-size: 14px;
+            color: #f1f5f9;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 28px 5%;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        @media (max-width: 640px) {
+            .search-box input {
+                width: 150px;
+            }
+            .search-box input:focus {
+                width: 175px;
+            }
+            .hero {
+                min-height: 64vh;
+                padding-top: 105px;
+            }
+            .modal-hero {
+                height: 210px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="site-header">
+        <a href="#" class="brand">
+            <span class="brand-dot"></span>
+            <span>CINEPICK</span>
+        </a>
+        <div class="nav-right">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="search" id="search-input" placeholder="제목, 감독, 분위기 검색">
+            </div>
+            <button type="button" class="wishlist-counter" id="wishlist-toggle">♥ 찜한 영화 (<span id="like-count">0</span>)</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <span class="hero-badge">EDITOR'S PICK · 이번 주 대표 추천작</span>
+            <h1>타이타닉</h1>
+            <div class="hero-meta">
+                <span class="rating">★ 9.5</span>
+                <span>1997</span>
+                <span>로맨스 · 드라마</span>
+                <span>감독 제임스 카메론</span>
+            </div>
+            <p class="hero-desc">
+                거대한 여객선 위에서 피어난 잭과 로즈의 운명적인 사랑. 시대를 넘어 여전히 가장 강렬한 여운을 남기는 클래식 명작을 지금 만나보세요.
+            </p>
+            <div class="hero-actions">
+                <button type="button" class="btn-primary" id="hero-detail-btn">상세 줄거리 보기</button>
+                <button type="button" class="btn-secondary" id="hero-like-btn">♡ 내 찜 목록에 담기</button>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <div class="section-top">
+            <h2 class="section-heading" id="list-heading">오늘의 추천 영화 컬렉션</h2>
+            <div class="genre-pills" id="genre-pills">
+                <button type="button" class="pill active" data-genre="all">전체</button>
+                <button type="button" class="pill" data-genre="로맨스">로맨스</button>
+                <button type="button" class="pill" data-genre="로맨틱 코미디">로맨틱 코미디</button>
+                <button type="button" class="pill" data-genre="드라마">드라마</button>
+                <button type="button" class="pill" data-genre="판타지">판타지</button>
+            </div>
+        </div>
+
+        <div class="movie-grid" id="movie-grid"></div>
+    </main>
+
+    <!-- 상세 정보 모달 -->
+    <div class="modal-overlay" id="detail-modal" hidden>
+        <div class="modal-box" role="dialog" aria-modal="true">
+            <button type="button" class="modal-close" id="modal-close" aria-label="닫기">×</button>
+            <div class="modal-hero">
+                <img id="modal-img" src="" alt="">
+            </div>
+            <div class="modal-content">
+                <div class="modal-tags" id="modal-tags"></div>
+                <h2 id="modal-title"></h2>
+                <p class="modal-info-line" id="modal-info-line"></p>
+                <p class="modal-story" id="modal-story"></p>
+                <div class="modal-highlight" id="modal-highlight"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 CINEPICK Movie Curation. Curated for cinema lovers.</p>
+    </footer>
+
+    <script>
+        const movies = [
+            {
+                id: 1,
+                title: "타이타닉",
+                genre: "로맨스",
+                year: 1997,
+                rating: "9.5",
+                runtime: "194분",
+                director: "제임스 카메론",
+                mood: "감동 · 서사 · 명작",
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1000&q=80",
+                summary: "거대 여객선 타이타닉호에서 만난 잭과 로즈의 짧지만 강렬한 사랑과 운명적인 항해를 그린 클래식 명작.",
+                point: "압도적인 스케일과 잭·로즈의 감정선이 어우러져 엔딩 후에도 깊은 여운을 남기는 작품입니다."
+            },
+            {
+                id: 2,
+                title: "노팅 힐",
+                genre: "로맨틱 코미디",
+                year: 1999,
+                rating: "9.1",
+                runtime: "124분",
+                director: "로저 미첼",
+                mood: "설렘 · 유쾌 · 힐링",
+                image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1000&q=80",
+                summary: "런던 노팅 힐의 작은 여행 서점 주인 윌리엄과 세계적인 영화배우 애나가 우연한 만남을 계기로 사랑에 빠지는 이야기.",
+                point: "부담 없이 기분 좋아지는 유머와 런던 골목의 따뜻한 분위기가 매력적인 로맨틱 코미디입니다."
+            },
+            {
+                id: 3,
+                title: "오늘 밤, 세계에서 이 사랑이 사라진다 해도",
+                genre: "로맨스",
+                year: 2022,
+                rating: "8.9",
+                runtime: "121분",
+                director: "미키 타카히로",
+                mood: "서정적 · 청춘 · 애틋함",
+                image: "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?auto=format&fit=crop&w=1000&q=80",
+                summary: "자고 일어나면 전날의 기억이 사라지는 소녀와 그녀의 매일매일을 행복한 기억으로 채워주려는 소년의 청춘 로맨스.",
+                point: "맑고 투명한 영상미와 일기장을 매개로 이어지는 섬세한 감정 표현이 돋보입니다."
+            },
+            {
+                id: 4,
+                title: "어바웃 타임",
+                genre: "판타지",
+                year: 2013,
+                rating: "9.4",
+                runtime: "123분",
+                director: "리차드 커티스",
+                mood: "따뜻함 · 가족 · 시간여행",
+                image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1000&q=80",
+                summary: "시간을 되돌릴 수 있는 능력을 알게 된 팀이 사랑하는 사람과의 인연과 평범한 하루의 진짜 가치를 깨닫는 이야기.",
+                point: "연애뿐만 아니라 가족과의 관계, 일상을 대하는 태도까지 따뜻하게 어루만져 주는 인생 영화입니다."
+            },
+            {
+                id: 5,
+                title: "라라랜드",
+                genre: "드라마",
+                year: 2016,
+                rating: "9.2",
+                runtime: "128분",
+                director: "데이미언 셔젤",
+                mood: "음악 · 꿈 · 감각적",
+                image: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=80",
+                summary: "재즈 피아니스트 세바스찬과 배우 지망생 미아가 꿈을 좇으며 서로의 가장 빛나는 순간을 함께하는 뮤직 드라마.",
+                point: "황홀한 OST와 색감, 현실적인 결말이 어우러져 밤에 혼자 보기 좋은 영화입니다."
+            },
+            {
+                id: 6,
+                title: "비긴 어게인",
+                genre: "드라마",
+                year: 2013,
+                rating: "9.0",
+                runtime: "104분",
+                director: "존 카니",
+                mood: "위로 · 음악 · 뉴욕",
+                image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1000&q=80",
+                summary: "모든 것을 잃은 음반 프로듀서와 싱어송라이터가 뉴욕 거리를 스튜디오 삼아 새로운 음반을 만들어가는 이야기.",
+                point: "지친 하루 끝에 가볍게 틀어놓기만 해도 음악과 대사로 기분이 환기되는 작품입니다."
+            }
+        ];
+
+        const likedIds = new Set();
+        let selectedGenre = "all";
+        let searchKeyword = "";
+        let onlyLiked = false;
+
+        const headerEl = document.getElementById("site-header");
+        const gridEl = document.getElementById("movie-grid");
+        const pillsEl = document.getElementById("genre-pills");
+        const searchInput = document.getElementById("search-input");
+        const wishlistToggle = document.getElementById("wishlist-toggle");
+        const likeCountEl = document.getElementById("like-count");
+        const listHeading = document.getElementById("list-heading");
+
+        const modalEl = document.getElementById("detail-modal");
+        const modalClose = document.getElementById("modal-close");
+        const modalImg = document.getElementById("modal-img");
+        const modalTags = document.getElementById("modal-tags");
+        const modalTitle = document.getElementById("modal-title");
+        const modalInfoLine = document.getElementById("modal-info-line");
+        const modalStory = document.getElementById("modal-story");
+        const modalHighlight = document.getElementById("modal-highlight");
+
+        const heroDetailBtn = document.getElementById("hero-detail-btn");
+        const heroLikeBtn = document.getElementById("hero-like-btn");
+
+        window.addEventListener("scroll", () => {
+            headerEl.classList.toggle("scrolled", window.scrollY > 30);
+        });
+
+        function updateLikeUI() {
+            likeCountEl.textContent = likedIds.size;
+            const heroLiked = likedIds.has(1);
+            heroLikeBtn.textContent = heroLiked ? "♥ 찜 목록에 담김" : "♡ 내 찜 목록에 담기";
+        }
+
+        function toggleLike(id) {
+            if (likedIds.has(id)) {
+                likedIds.delete(id);
+            } else {
+                likedIds.add(id);
+            }
+            updateLikeUI();
+            renderMovies();
+        }
+
+        function openModal(movie) {
+            modalImg.src = movie.image;
+            modalImg.alt = movie.title;
+            modalTags.innerHTML = `
+                <span class="modal-tag">${movie.genre}</span>
+                <span class="modal-tag">★ ${movie.rating}</span>
+                <span class="modal-tag">${movie.runtime}</span>
+            `;
+            modalTitle.textContent = movie.title;
+            modalInfoLine.textContent = `${movie.year} · 감독 ${movie.director} · ${movie.mood}`;
+            modalStory.textContent = movie.summary;
+            modalHighlight.innerHTML = `<strong>관람 포인트:</strong> ${movie.point}`;
+            modalEl.hidden = false;
+        }
+
+        function renderMovies() {
+            const filtered = movies.filter((m) => {
+                const matchGenre = selectedGenre === "all" || m.genre === selectedGenre;
+                const matchLiked = !onlyLiked || likedIds.has(m.id);
+                const q = searchKeyword.trim().toLowerCase();
+                const matchSearch =
+                    !q ||
+                    m.title.toLowerCase().includes(q) ||
+                    m.director.toLowerCase().includes(q) ||
+                    m.mood.toLowerCase().includes(q) ||
+                    m.summary.toLowerCase().includes(q);
+                return matchGenre && matchLiked && matchSearch;
+            });
+
+            gridEl.innerHTML = "";
+
+            if (filtered.length === 0) {
+                gridEl.innerHTML = `<div class="empty-box">조건에 맞는 영화가 없습니다. 필터나 검색어를 변경해 보세요.</div>`;
+                return;
+            }
+
+            filtered.forEach((movie) => {
+                const isLiked = likedIds.has(movie.id);
+                const card = document.createElement("article");
+                card.className = "movie-card";
+
+                card.innerHTML = `
+                    <div class="poster-wrap">
+                        <img src="${movie.image}" alt="${movie.title}">
+                        <span class="genre-tag">${movie.genre}</span>
+                        <button type="button" class="like-btn ${isLiked ? "liked" : ""}" aria-label="찜하기">
+                            ${isLiked ? "♥" : "♡"}
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-top-row">
+                            <h3 class="card-title">${movie.title}</h3>
+                            <span class="card-score">★ ${movie.rating}</span>
+                        </div>
+                        <div class="card-sub">${movie.year} · ${movie.director} · ${movie.runtime}</div>
+                        <p class="card-summary">${movie.summary}</p>
+                        <div class="card-footer">
+                            <span>${movie.mood}</span>
+                            <button type="button" class="detail-trigger">상세보기 →</button>
+                        </div>
+                    </div>
+                `;
+
+                card.querySelector(".like-btn").addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    toggleLike(movie.id);
+                });
+                card.querySelector(".poster-wrap").addEventListener("click", () => openModal(movie));
+                card.querySelector(".card-title").addEventListener("click", () => openModal(movie));
+                card.querySelector(".detail-trigger").addEventListener("click", () => openModal(movie));
+
+                gridEl.appendChild(card);
+            });
+        }
+
+        pillsEl.addEventListener("click", (e) => {
+            const btn = e.target.closest(".pill");
+            if (!btn) return;
+            pillsEl.querySelectorAll(".pill").forEach((p) => p.classList.remove("active"));
+            btn.classList.add("active");
+            selectedGenre = btn.dataset.genre;
+            renderMovies();
+        });
+
+        searchInput.addEventListener("input", (e) => {
+            searchKeyword = e.target.value;
+            renderMovies();
+        });
+
+        wishlistToggle.addEventListener("click", () => {
+            onlyLiked = !onlyLiked;
+            wishlistToggle.classList.toggle("active", onlyLiked);
+            listHeading.textContent = onlyLiked ? "내가 찜한 영화 목록" : "오늘의 추천 영화 컬렉션";
+            renderMovies();
+        });
+
+        heroDetailBtn.addEventListener("click", () => openModal(movies[0]));
+        heroLikeBtn.addEventListener("click", () => toggleLike(1));
+
+        modalClose.addEventListener("click", () => (modalEl.hidden = true));
+        modalEl.addEventListener("click", (e) => {
+            if (e.target === modalEl) modalEl.hidden = true;
+        });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") modalEl.hidden = true;
+        });
+
+        updateLikeUI();
+        renderMovies();
+    </script>
+</body>
+</html>
