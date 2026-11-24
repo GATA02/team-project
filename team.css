@@ -124,6 +124,45 @@ a:focus-visible {
   background: #ffffff;
 }
 
+/* 문서 내 검색 */
+.search-form {
+  display: flex;
+  background: #ffffff;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.search-form input {
+  width: 175px;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.search-form button {
+  padding: 5px 10px;
+  border: none;
+  background: #e9ecef;
+  color: var(--text);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background: var(--line);
+}
+
+/* 검색 결과 표시: 초록(#00a495)의 보색 #ff5b6a, 투명도 30% */
+mark.search-mark {
+  padding: 0 2px;
+  border-radius: 2px;
+  background-color: rgba(255, 91, 106, 0.3);
+  color: var(--title);
+}
+
 /* =========================
    가운데 흰색 문서
 ========================= */
@@ -427,6 +466,10 @@ a:focus-visible {
 @media (max-width: 600px) {
   .logo {
     font-size: 22px;
+  }
+
+  .search-form input {
+    width: 125px;
   }
 
   .wiki-article {
