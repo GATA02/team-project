@@ -1,32 +1,46 @@
 /* =========================
-   기본 설정 (team.css와 동일)
+   기본 설정 (index.css 디자인 기준)
 ========================= */
 :root {
-  --header-bg: #343a40;
-  --accent: #0088ff;
+  --header-bg: #00a495;
+  --header-bg-scrolled: #008f82;
+  --accent: #00a495;
+  --accent-dark: #00897b;
+  --accent-deep: #00695c;
+  --accent-soft: #f1f8f7;
+  --link: #0275d8;
   --page-bg: #f5f5f5;
   --paper-bg: #ffffff;
-  --soft-bg: #f7f8fa;
-  --border: #dddddd;
-  --text: #333333;
-  --muted: #777777;
+  --soft-bg: #fafafa;
+  --border: #d5d9de;
+  --line: #dee2e6;
+  --text: #212529;
+  --muted: #6c757d;
+  --title: #111315;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+  font-family: "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+  background-color: var(--page-bg);
+  color: var(--text);
+}
+
 body {
   margin: 0;
   background: var(--page-bg);
   color: var(--text);
-  font-family: "Malgun Gothic", Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 a {
-  color: #0077d6;
+  color: var(--link);
   text-decoration: none;
 }
 
@@ -39,51 +53,66 @@ a:focus-visible {
   outline-offset: 4px;
 }
 
-section,
-article {
-  scroll-margin-top: 20px;
-}
-
 /* =========================
-   진회색 상단 메뉴
+   상단 바 (비율: process 헤더 / 색상: page)
 ========================= */
 .top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px;
   background: var(--header-bg);
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 1px solid var(--accent-dark);
+  transition: all 0.4s ease;
+}
+
+.top-bar.scrolled {
+  background: var(--header-bg-scrolled);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
 }
 
 .nav-container {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 28px;
-  max-width: 1100px;
-  min-height: 56px;
-  margin: 0 auto;
-  padding: 10px 0;
+  gap: 30px;
+  width: 100%;
+  height: 100%;
+  padding: 0 50px;
 }
 
 .logo {
   color: #ffffff;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 2px;
   white-space: nowrap;
 }
 
 .logo:hover {
+  color: #ffffff;
   text-decoration: none;
 }
 
 .top-menu {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px;
+  margin-left: auto;
 }
 
 .top-menu a {
-  color: #e1e4e8;
-  font-size: 13px;
+  position: relative;
+  padding-bottom: 5px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+.top-menu a:hover {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .top-menu a[aria-current="page"] {
@@ -91,39 +120,89 @@ article {
   font-weight: 700;
 }
 
+.top-menu a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #ffffff;
+}
+
+/* 문서 내 검색 */
+.search-form {
+  display: flex;
+  background: #ffffff;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.search-form input {
+  width: 175px;
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.search-form button {
+  padding: 5px 10px;
+  border: none;
+  background: #e9ecef;
+  color: var(--text);
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background: var(--line);
+}
+
+/* 검색 결과 표시: 초록(#00a495)의 보색 #ff5b6a, 투명도 30% */
+mark.search-mark {
+  padding: 0 2px;
+  border-radius: 2px;
+  background-color: rgba(255, 91, 106, 0.3);
+  color: var(--title);
+}
+
 /* =========================
    가운데 흰색 문서
 ========================= */
 .wiki-container {
-  max-width: 1100px;
-  min-height: calc(100vh - 82px);
-  margin: 24px auto 0;
-  background: var(--paper-bg);
-  border-right: 1px solid #e8e8e8;
-  border-left: 1px solid #e8e8e8;
+  max-width: 1200px;
+  margin: 18px auto 32px;
+  padding: 0 16px;
 }
 
 .wiki-article {
-  padding: 28px 32px 40px;
+  padding: 22px 26px 34px;
+  background: var(--paper-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
 }
 
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 12.5px;
 }
 
 .document-title {
   margin: 0;
-  padding-bottom: 14px;
-  border-bottom: 2px solid var(--accent);
-  color: #111111;
-  font-size: 32px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  color: var(--title);
+  font-size: 31px;
   line-height: 1.4;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.5px;
 }
 
 .document-info {
@@ -131,9 +210,9 @@ article {
   flex-wrap: wrap;
   gap: 10px;
   padding: 10px 0;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #e9ecef;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 12.5px;
 }
 
 .intro {
@@ -141,24 +220,24 @@ article {
 }
 
 /* =========================
-   연한 회색 목차
+   목차
 ========================= */
 .toc {
   width: fit-content;
-  min-width: 230px;
+  min-width: 290px;
   max-width: 100%;
-  margin-bottom: 32px;
-  padding: 16px 22px;
+  margin-bottom: 24px;
+  padding: 12px 16px;
   background: var(--soft-bg);
-  border: 1px solid var(--border);
+  border: 1px solid #cfd5dc;
+  border-radius: 3px;
 }
 
 .toc-title {
-  margin: 0 0 10px;
-  color: #222222;
-  font-size: 16px;
-  font-weight: 700;
-  text-align: center;
+  margin: 0 0 8px;
+  color: var(--title);
+  font-size: 15px;
+  font-weight: 800;
 }
 
 .toc-list,
@@ -169,31 +248,38 @@ article {
 }
 
 .toc-list ol {
-  padding-left: 18px;
+  padding-left: 16px;
 }
 
 .toc-list li {
   margin: 3px 0;
 }
 
+.toc-list a {
+  font-size: 13.5px;
+}
+
 .section-number {
   margin-right: 3px;
+  color: var(--accent-dark);
+  font-weight: 700;
 }
 
 /* =========================
    본문 제목과 구분선
 ========================= */
 .section-title {
-  margin: 32px 0 14px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-  color: #222222;
-  font-size: 23px;
+  margin: 26px 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--accent);
+  color: var(--title);
+  font-size: 21px;
   line-height: 1.5;
+  font-weight: 800;
 }
 
 .section-title a {
-  color: #0077d6;
+  color: var(--accent-dark);
 }
 
 .wiki-article p {
@@ -208,8 +294,9 @@ article {
    프로젝트 카드 공통
 ========================= */
 .project-card {
-  background: var(--paper-bg);
-  border: 1px solid #cccccc;
+  background: #fcfdfd;
+  border: 1px solid #d8dce0;
+  border-radius: 3px;
   overflow: hidden;
 }
 
@@ -217,8 +304,8 @@ article {
 .project-thumb {
   width: 100%;
   aspect-ratio: 16 / 10;
-  background: #f1f3f5;
-  border-bottom: 1px solid var(--border);
+  background: var(--accent-soft);
+  border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
 
@@ -249,21 +336,21 @@ article {
   padding: 1px 10px;
   border: 1px solid var(--accent);
   border-radius: 999px;
-  background: #eaf4ff;
-  color: #0077d6;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
   font-size: 12px;
   font-weight: 700;
 }
 
 .project-author {
-  color: #0077d6;
+  color: var(--accent-deep);
   font-size: 13px;
   font-weight: 700;
 }
 
 .project-title {
   margin: 0;
-  color: #222222;
+  color: var(--title);
   font-size: 18px;
   line-height: 1.5;
 }
@@ -277,8 +364,8 @@ article {
   width: 100%;
   margin-top: 6px !important;
   padding-top: 10px;
-  border-top: 1px solid var(--border);
-  color: var(--muted);
+  border-top: 1px solid var(--line);
+  color: var(--accent-deep);
   font-size: 13px;
 }
 
@@ -286,15 +373,15 @@ article {
 .project-link {
   margin-top: 6px;
   padding: 5px 14px;
-  border: 1px solid #bbbbbb;
-  border-radius: 4px;
-  background: #f5f5f5;
-  color: #333333;
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
   font-size: 13px;
 }
 
 .project-link:hover {
-  background: #e5e5e5;
+  background: #e0f0ee;
   text-decoration: none;
 }
 
@@ -308,7 +395,7 @@ article {
 .gallery-team-card .project-thumb {
   min-height: 260px;
   aspect-ratio: auto;
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--line);
   border-bottom: none;
 }
 
@@ -323,20 +410,21 @@ article {
 
 /* 개인 프로젝트: 팀원별 소제목 */
 .member-section {
-  margin: 28px 0 36px;
+  margin: 24px 0 32px;
 }
 
 .member-title {
-  margin: 0 0 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #e5e5e5;
-  color: #333333;
-  font-size: 19px;
+  margin: 0 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+  font-size: 17px;
   line-height: 1.5;
+  font-weight: 700;
 }
 
 .member-title a {
-  color: #0077d6;
+  color: var(--accent-dark);
 }
 
 /* 개인 프로젝트: 가로형 카드 */
@@ -349,7 +437,7 @@ article {
 .personal-card .project-thumb {
   min-height: 220px;
   aspect-ratio: auto;
-  border-right: 1px solid var(--border);
+  border-right: 1px solid var(--line);
   border-bottom: none;
 }
 
@@ -364,9 +452,9 @@ article {
 .document-footer {
   margin-top: 44px;
   padding-top: 16px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--line);
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .document-footer p {
@@ -374,21 +462,27 @@ article {
 }
 
 .back-link {
-  font-size: 13px;
+  font-size: 13.5px;
+  font-weight: 600;
 }
 
 /* =========================
    화면이 좁을 때
 ========================= */
-@media (max-width: 1150px) {
-  .nav-container {
-    margin-right: 20px;
-    margin-left: 20px;
+@media (max-width: 860px) {
+  .top-bar {
+    height: auto;
   }
 
-  .wiki-container {
-    margin-right: 20px;
-    margin-left: 20px;
+  .nav-container {
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    padding: 10px 20px;
+  }
+
+  .top-menu {
+    gap: 18px;
+    flex-wrap: wrap;
   }
 }
 
@@ -403,7 +497,7 @@ article {
     min-height: 0;
     aspect-ratio: 16 / 10;
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid var(--line);
   }
 
   .gallery-team-card .project-info,
@@ -417,35 +511,24 @@ article {
 }
 
 @media (max-width: 600px) {
-  .nav-container {
-    gap: 8px 20px;
-    margin-right: 16px;
-    margin-left: 16px;
-    padding: 10px 0;
-  }
-
   .logo {
     font-size: 22px;
   }
 
-  .top-menu {
-    gap: 14px;
-  }
-
-  .wiki-container {
-    margin: 12px 10px 0;
+  .search-form input {
+    width: 125px;
   }
 
   .wiki-article {
-    padding: 22px 16px 32px;
+    padding: 16px 14px 28px;
   }
 
   .document-title {
-    font-size: 28px;
+    font-size: 25px;
   }
 
   .section-title {
-    font-size: 21px;
+    font-size: 19px;
   }
 
   .toc {
@@ -453,6 +536,6 @@ article {
   }
 
   .member-title {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
