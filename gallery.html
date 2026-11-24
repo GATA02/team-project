@@ -3,139 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>프로젝트 갤러리 | 일단 푸시 Team Portfolio</title>
-    <link rel="stylesheet" href="page.css">
-    <link rel="stylesheet" href="gallery.css">
+    <title>프로젝트 갤러리 - 팀 위키</title>
+    <link rel="stylesheet" href="./gallery.css">
 </head>
 <body>
 
-    <header id="main-header" class="scrolled">
-        <a href="page.html" class="logo-link">
-            <div class="logo">OPENSOURCE</div>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="page.html" class="nav-link">홈</a></li>
-                <li><a href="page.html#team" class="nav-link">팀</a></li>
-                <li><a href="page.html#project" class="nav-link">프로젝트 소개</a></li>
-                <li><a href="about.html">팀 소개</a></li>
-                <li><a href="gallery.html" class="nav-link active">갤러리</a></li>
-                <li><a href="process.html" class="nav-link">개발 과정</a></li>
-            </ul>
+    <header id="main-header" class="top-bar">
+        <nav class="nav-container" aria-label="주 메뉴">
+            <a href="./page.html" class="logo">팀 위키</a>
+
+            <div class="top-menu">
+                <a href="./page.html">메인</a>
+                <a href="./about.html">팀 소개</a>
+                <a href="./team.html">팀원 소개</a>
+                <a href="./gallery.html" aria-current="page">갤러리</a>
+                <a href="./process.html">개발 과정</a>
+            </div>
         </nav>
     </header>
 
-    <main id="gallery-page">
+    <main id="gallery-page" class="wiki-container">
+        <article class="wiki-article">
 
-        <section class="gallery-hero">
-            <span class="team-brand">PROJECT GALLERY</span>
-            <h1 class="gallery-main-title">프로젝트 갤러리</h1>
-            <p class="section-desc">팀 프로젝트와 팀원들의 개인 프로젝트를 한눈에 볼 수 있는 공간입니다.</p>
-        </section>
-
-        <section id="team-project" class="gallery-section">
-            <h2 class="section-title">TEAM PROJECT</h2>
-            <p class="section-desc">팀이 함께 만든 대표 프로젝트입니다.</p>
-
-            <article class="project-card gallery-team-card">
-                <div class="project-thumb">
-                    <img src="images/team-project.png" alt="팀 프로젝트 대표 이미지">
-                </div>
-                <div class="project-info">
-                    <span class="project-badge">TEAM</span>
-                    <h3 class="project-title">오픈소스SW활용 협업 페이지 만들기</h3>
-                    <p class="project-desc">팀명: 일단푸시</p>
-                    <p class="project-tech">사용 기술: HTML, CSS, JavaScript</p>
-                </div>
-            </article>
-        </section>
-
-        <section id="personal-projects" class="gallery-section">
-            <h2 class="section-title">PERSONAL PROJECTS</h2>
-            <p class="section-desc">팀원 각자가 만든 개인 프로젝트입니다.</p>
-
-            <div class="project-grid">
-
-                <article class="project-card personal-card">
-                    <div class="project-thumb">
-                        <img src="images/project-1.png" alt="팀원 1 프로젝트 이미지">
-                    </div>
-                    <div class="project-info">
-                        <p class="project-author">이윤진</p>
-                        <h3 class="project-title">프로젝트 제목 1</h3>
-                        <p class="project-desc">프로젝트 소개를 입력하세요.</p>
-                        <p class="project-tech">사용 기술: </p>
-                    </div>
-                </article>
-
-                <article class="project-card personal-card">
-                    <div class="project-thumb">
-                        <img src="images/project-2.png" alt="팀원 2 프로젝트 이미지">
-                    </div>
-                    <div class="project-info">
-                        <p class="project-author">박현정</p>
-                        <h3 class="project-title">프로젝트 제목 2</h3>
-                        <p class="project-desc">프로젝트 소개를 입력하세요.</p>
-                        <p class="project-tech">사용 기술: </p>
-                    </div>
-                </article>
-
-                <article class="project-card personal-card">
-                    <div class="project-thumb">
-                        <img src="images/project-3.png" alt="팀원 3 프로젝트 이미지">
-                    </div>
-                    <div class="project-info">
-                        <p class="project-author">김서영</p>
-                        <h3 class="project-title">프로젝트 제목 3</h3>
-                        <p class="project-desc">프로젝트 소개를 입력하세요.</p>
-                        <p class="project-tech">사용 기술: </p>
-                    </div>
-                </article>
-
-                <article class="project-card personal-card">
-                    <div class="project-thumb">
-                        <img src="images/project-4.png" alt="팀원 4 프로젝트 이미지">
-                    </div>
-                    <div class="project-info">
-                        <p class="project-author">이병민</p>
-                        <h3 class="project-title">프로젝트 제목 4</h3>
-                        <p class="project-desc">프로젝트 소개를 입력하세요.</p>
-                        <p class="project-tech">사용 기술: </p>
-                    </div>
-                </article>
-
-                <article class="project-card personal-card">
-                    <div class="project-thumb">
-                        <img src="images/project-5.png" alt="팀원 5 프로젝트 이미지">
-                    </div>
-                    <div class="project-info">
-                        <p class="project-author">정희돈</p>
-                        <h3 class="project-title">프로젝트 제목 5</h3>
-                        <p class="project-desc">프로젝트 소개를 입력하세요.</p>
-                        <p class="project-tech">사용 기술: </p>
-                    </div>
-                </article>
-
-                <article class="project-card personal-card">
-                    <div class="project-thumb">
-                        <img src="images/project-6.png" alt="팀원 6 프로젝트 이미지">
-                    </div>
-                    <div class="project-info">
-                        <p class="project-author">박지훈</p>
-                        <h3 class="project-title">프로젝트 제목 6</h3>
-                        <p class="project-desc">프로젝트 소개를 입력하세요.</p>
-                        <p class="project-tech">사용 기술: </p>
-                    </div>
-                </article>
-
+            <div class="breadcrumb">
+                <a href="./page.html">메인</a>
+                <span></span>
+                <span>프로젝트 갤러리</span>
             </div>
-        </section>
 
+            <h1 class="document-title">프로젝트 갤러리</h1>
+
+            <div class="document-info">
+                팀 프로젝트
+                <span>|</span>
+                프로젝트 갤러리 문서
+            </div>
+
+            <p class="intro">팀 프로젝트와 팀원들의 개인 프로젝트를 한눈에 볼 수 있는 공간입니다.</p>
+
+            <nav class="toc" aria-label="목차">
+                <h2 class="toc-title">목차</h2>
+
+                <ol class="toc-list">
+                    <li>
+                        <a href="#team-project">
+                            <span class="section-number">1.</span> 팀 프로젝트
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#personal-projects">
+                            <span class="section-number">2.</span> 개인 프로젝트
+                        </a>
+
+                        <ol>
+                            <li><a href="#project1"><span class="section-number">2.1.</span> 이윤진</a></li>
+                            <li><a href="#project2"><span class="section-number">2.2.</span> 박현정</a></li>
+                            <li><a href="#project3"><span class="section-number">2.3.</span> 김서영</a></li>
+                            <li><a href="#project4"><span class="section-number">2.4.</span> 이병민</a></li>
+                            <li><a href="#project5"><span class="section-number">2.5.</span> 정희돈</a></li>
+                            <li><a href="#project6"><span class="section-number">2.6.</span> 박지훈</a></li>
+                        </ol>
+                    </li>
+                </ol>
+            </nav>
+
+            <section id="team-project" class="gallery-section">
+                <h2 class="section-title"><a href="#team-project">1.</a> 팀 프로젝트</h2>
+                <p>팀이 함께 만든 대표 프로젝트입니다.</p>
+
+                <article class="project-card gallery-team-card">
+                    <div class="project-thumb">
+                        <img src="images/team-project.png" alt="팀 프로젝트 대표 이미지">
+                    </div>
+                    <div class="project-info">
+                        <span class="project-badge">TEAM</span>
+                        <h3 class="project-title">오픈소스SW활용 협업 페이지 만들기</h3>
+                        <p class="project-desc">팀명: 일단푸시</p>
+                        <p class="project-tech">사용 기술: HTML, CSS, JavaScript</p>
+                    </div>
+                </article>
+            </section>
+
+           
+            <section id="personal-projects" class="gallery-section">
+                <h2 class="section-title"><a href="#personal-projects">2.</a> 개인 프로젝트</h2>
+                <p>팀원 각자가 만든 개인 프로젝트입니다.</p>
+
+                
+                <section id="project1" class="member-section">
+                    <h3 class="member-title"><a href="#project1">2.1.</a> 이윤진</h3>
+
+                    <article class="project-card personal-card">
+                        <div class="project-thumb">
+                            <img src="images/project-1.png" alt="이윤진 프로젝트 이미지">
+                        </div>
+                        <div class="project-info">
+                            <h4 class="project-title">프로젝트 제목 1</h4>
+                            <p class="project-desc">프로젝트 소개를 입력하세요.</p>
+                            <p class="project-tech">사용 기술: </p>
+                        </div>
+                    </article>
+                </section>
+
+              
+                <section id="project2" class="member-section">
+                    <h3 class="member-title"><a href="#project2">2.2.</a> 박현정</h3>
+
+                    <article class="project-card personal-card">
+                        <div class="project-thumb">
+                            <img src="images/project-2.png" alt="박현정 프로젝트 이미지">
+                        </div>
+                        <div class="project-info">
+                            <h4 class="project-title">프로젝트 제목 2</h4>
+                            <p class="project-desc">프로젝트 소개를 입력하세요.</p>
+                            <p class="project-tech">사용 기술: </p>
+                        </div>
+                    </article>
+                </section>
+
+               
+                <section id="project3" class="member-section">
+                    <h3 class="member-title"><a href="#project3">2.3.</a> 김서영</h3>
+
+                    <article class="project-card personal-card">
+                        <div class="project-thumb">
+                            <img src="images/project-3.png" alt="김서영 프로젝트 이미지">
+                        </div>
+                        <div class="project-info">
+                            <h4 class="project-title">프로젝트 제목 3</h4>
+                            <p class="project-desc">프로젝트 소개를 입력하세요.</p>
+                            <p class="project-tech">사용 기술: </p>
+                        </div>
+                    </article>
+                </section>
+
+                
+                <section id="project4" class="member-section">
+                    <h3 class="member-title"><a href="#project4">2.4.</a> 이병민</h3>
+
+                    <article class="project-card personal-card">
+                        <div class="project-thumb">
+                            <img src="img/lbmproject.png" alt="이병민 프로젝트 이미지">
+                        </div>
+                        <div class="project-info">
+                            <h4 class="project-title">고양이 소개 사이트</h4>
+                            <p class="project-desc">웹프로그래밍 수업 프로젝트/<a href="https://gata02.github.io/web/" target="_blank">이동하기</a></p>
+                            <p class="project-tech">사용 기술: HTML, CSS, JS</p>
+                        </div>
+                    </article>
+                </section>
+
+                
+                <section id="project5" class="member-section">
+                    <h3 class="member-title"><a href="#project5">2.5.</a> 정희돈</h3>
+
+                    <article class="project-card personal-card">
+                        <div class="project-thumb">
+                            <img src="img/jhdproject.png" alt="정희돈 프로젝트 이미지">
+                        </div>
+                        <div class="project-info">
+                            <h4 class="project-title">쿠키런 킹덤</h4>
+                            <p class="project-desc">웹프로그래밍 수업 프로젝트/<a href="https://jhd0306.github.io/gmaeee11/" target="_blank">이동하기</a></p>
+                            <p class="project-tech">사용 기술: HTML, CSS, JS</p>
+                        </div>
+                    </article>
+                </section>
+
+                
+                <section id="project6" class="member-section">
+                    <h3 class="member-title"><a href="#project6">2.6.</a> 박지훈</h3>
+
+                    <article class="project-card personal-card">
+                        <div class="project-thumb">
+                            <img src="images/project-6.png" alt="박지훈 프로젝트 이미지">
+                        </div>
+                        <div class="project-info">
+                            <h4 class="project-title">프로젝트 제목 6</h4>
+                            <p class="project-desc">프로젝트 소개를 입력하세요.</p>
+                            <p class="project-tech">사용 기술: </p>
+                        </div>
+                    </article>
+                </section>
+            </section>
+
+           
+            <footer id="site-footer" class="document-footer">
+                <p>이 문서는 팀 프로젝트의 프로젝트 갤러리 문서입니다.</p>
+
+                <a href="./page.html" class="back-link">← 메인으로 돌아가기</a>
+            </footer>
+
+        </article>
     </main>
-
-    <footer id="site-footer">
-        <p>© 2026 OPENSOURCE. Built for Team Portfolio. All rights reserved.</p>
-    </footer>
 
 </body>
 </html>
