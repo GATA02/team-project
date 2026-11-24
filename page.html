@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>일단 푸시 - 나무위키</title>
+    <title>일단 푸시 - 팀 위키</title>
     <link rel="stylesheet" href="page.css">
 </head>
 <body>
     <!-- 상단 네비게이션 바 -->
     <header class="nw-header" id="main-header">
         <div class="nw-header-inner">
-            <a href="#top" class="nw-brand">나무위키</a>
+            <a href="#top" class="nw-brand">팀 위키</a>
             <nav class="nw-nav" aria-label="상단 메뉴">
-                <a href="#top">최근 변경</a>
-                <a href="#sec-1">개요</a>
-                <a href="#sec-2">팀원</a>
-                <a href="#sec-3">협업</a>
+                <a href="./page.html" class="active" aria-current="page">메인</a>
                 <a href="./about.html">팀 소개</a>
-                <a href="gallery.html">갤러리</a>
-                <a href="process.html">개발 과정</a>
+                <a href="./team.html">팀원 소개</a>
+                <a href="./gallery.html">갤러리</a>
+                <a href="./process.html">개발 과정</a>
             </nav>
             <form class="nw-search" id="nw-search-form" role="search">
                 <input type="search" id="nw-search-input" placeholder="문서 내 검색..." autocomplete="off">
@@ -29,24 +27,9 @@
 
     <div class="nw-container" id="top">
         <article class="nw-article">
-            <!-- 문서 제목 + 문서 관리 탭 -->
+            <!-- 문서 제목 -->
             <div class="nw-title-area">
                 <h1 class="nw-title">일단 푸시</h1>
-                <div class="nw-tabs">
-                    <a href="#top" class="nw-tab active">문서</a>
-                    <a href="#sec-3" class="nw-tab">토론</a>
-                    <a href="#sec-2" class="nw-tab">편집</a>
-                    <a href="#sec-4" class="nw-tab">역사</a>
-                </div>
-            </div>
-
-            <!-- 분류 바 -->
-            <div class="nw-category-bar">
-                <span class="nw-category-label">분류:</span>
-                <a href="#sec-1">팀 프로젝트</a>
-                <a href="#sec-2">OPENSOURCE</a>
-                <a href="#sec-3">Git·GitHub</a>
-                <a href="#sec-3">웹 포트폴리오</a>
             </div>
 
             <!-- 리드 문단 + 인포박스 -->
@@ -54,10 +37,10 @@
                 <div class="nw-lead-text">
                     <p>
                         <strong>일단 푸시</strong>는 여섯 명의 팀원이 HTML, CSS, JavaScript를 바탕으로 하나의 웹사이트를 공동 개발하며,
-                        <a href="#sec-3" class="nw-link">Git</a>과 <a href="#sec-3" class="nw-link">GitHub</a> 기반 협업 프로세스를 경험하는 팀 프로젝트 단위이다.<sup class="nw-fn" data-fn="1">[1]</sup>
+                        <a href="#sec-3" class="nw-link">Git</a>과 <a href="#sec-3" class="nw-link">GitHub</a> 기반 협업 프로세스를 경험하는 팀 프로젝트 단위이다.
                     </p>
                     <p>
-                        웹 페이지를 간략하게 소개하는 포트폴리오 사이트를 구축하는 동시에 브랜치 관리, Pull Request, 코드 리뷰, 일정 조율, 배포 및 발표 전 과정을 수행한다.<sup class="nw-fn" data-fn="2">[2]</sup>
+                        웹 페이지를 간략하게 소개하는 포트폴리오 사이트를 구축하는 동시에 브랜치 관리, Pull Request, 코드 리뷰, 일정 조율, 배포 및 발표 전 과정을 수행한다.
                     </p>
                 </div>
 
@@ -140,7 +123,7 @@
                 </h2>
                 <div class="nw-section-body" id="body-2">
                     <div class="nw-callout">
-                        <strong>안내:</strong> 팀 역할은 추후 수정될 수 있으며, 현재 표기된 역할은 임의 배정 기준이다.<sup class="nw-fn" data-fn="3">[3]</sup>
+                        <strong>안내:</strong> 팀 역할은 추후 수정될 수 있으며, 현재 표기된 역할은 임의 배정 기준이다.
                     </div>
 
                     <h3 class="nw-h3" id="sec-2-1">
@@ -281,9 +264,6 @@
             </section>
         </article>
     </div>
-
-    <!-- 각주 호버/클릭 팝오버 -->
-    <div class="nw-fn-popover" id="fn-popover" role="tooltip" hidden></div>
 
     <footer class="nw-footer">
         <p>© 2026 OPENSOURCE. Built for Team Portfolio. All rights reserved.</p>

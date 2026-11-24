@@ -1,14 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const header = document.getElementById("main-header");
-    const sections = document.querySelectorAll(".nw-section");
-    const navLinks = document.querySelectorAll(".nw-nav a[href^='#']");
     const tocToggle = document.getElementById("toc-toggle");
     const tocList = document.getElementById("toc-list");
     const foldBtns = document.querySelectorAll(".nw-fold-btn");
     const navboxToggle = document.getElementById("navbox-toggle");
     const navboxBody = document.getElementById("navbox-body");
-    const fnRefs = document.querySelectorAll(".nw-fn");
-    const popover = document.getElementById("fn-popover");
     const searchForm = document.getElementById("nw-search-form");
     const searchInput = document.getElementById("nw-search-input");
     const article = document.querySelector(".nw-article");
@@ -17,21 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", () => {
         header.classList.toggle("scrolled", window.scrollY > 30);
     });
-
-    // 현재 섹션 상단 메뉴 활성화
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                const id = entry.target.getAttribute("id");
-                navLinks.forEach((link) => {
-                    link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
-                });
-            });
-        },
-        { rootMargin: "-20% 0px -65% 0px", threshold: 0 }
-    );
-    sections.forEach((sec) => observer.observe(sec));
 
     // 목차 접기/펼치기
     if (tocToggle && tocList) {
@@ -60,41 +41,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 각주 호버/클릭 팝오버
-    function hidePopover() {
-        if (!popover) return;
-        popover.hidden = true;
-    }
-
-    fnRefs.forEach((ref) => {
-        const showNote = (e) => {
-            e.stopPropagation();
-            const fnId = ref.dataset.fn;
-            const item = document.getElementById(`fn-item-${fnId}`);
-            if (!item || !popover) return;
-
-            popover.textContent = item.textContent;
-            popover.hidden = false;
-
-            const rect = ref.getBoundingClientRect();
-            const left = Math.min(window.innerWidth - 316, Math.max(12, rect.left));
-            const top = Math.min(window.innerHeight - 90, rect.bottom + 6);
-            popover.style.left = `${left}px`;
-            popover.style.top = `${top}px`;
-        };
-
-        ref.addEventListener("mouseenter", showNote);
-        ref.addEventListener("click", (e) => {
-            showNote(e);
-            const targetItem = document.getElementById(`fn-item-${ref.dataset.fn}`);
-            if (targetItem) {
-                targetItem.scrollIntoView({ behavior: "smooth", block: "center" });
-            }
-        });
-        ref.addEventListener("mouseleave", hidePopover);
+    // 검색창 밖의 다른 화면을 클릭하면 검색 색 처리 해제
+    document.addEventListener("click", (e) => {
+        if (searchForm && searchForm.contains(e.target)) return;
+        clearMarks();
     });
-
-    document.addEventListener("click", hidePopover);
 
     // 문서 내 검색 하이라이트
     function clearMarks() {
