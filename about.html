@@ -11,13 +11,16 @@
 <body>
 
   <!-- 상단 네비게이션 -->
-  <header class="top-bar">
+  <header id="main-header" class="top-bar">
     <div class="nav-container">
-      <a href="./page.html" class="logo">팀 위키</a>
+      <a href="./index.html" class="logo">팀 위키</a>
 
-      <nav class="top-menu">
-        <a href="./page.html">메인</a>
-        <a href="#team-info">팀 소개</a>
+      <nav class="top-menu" aria-label="주 메뉴">
+        <a href="./index.html">메인</a>
+        <a href="./about.html" aria-current="page">팀 소개</a>
+        <a href="./team.html">팀원 소개</a>
+        <a href="./gallery.html">갤러리</a>
+        <a href="./process.html">개발 과정</a>
       </nav>
 
       <form id="search-form" class="search-form">
@@ -38,7 +41,7 @@
     <article class="wiki-article" id="team-info">
 
       <div class="breadcrumb">
-        <a href="./page.html">메인</a>
+        <a href="./index.html">메인</a>
         <span>›</span>
         팀 소개
       </div>
@@ -46,9 +49,9 @@
       <h1 class="document-title">팀 소개</h1>
 
       <div class="document-info">
-        최근 수정 시각: 2026-11-23
-        <span>|</span>
         팀 프로젝트
+        <span>|</span>
+        팀 소개 문서
       </div>
 
       <hr>
@@ -59,9 +62,12 @@
 
       <!-- 목차 -->
       <div class="toc">
-        <div class="toc-title">목차</div>
+        <div class="toc-header">
+          <div class="toc-title">목차</div>
+          <button type="button" class="toc-toggle" id="toc-toggle" aria-controls="toc-list" aria-expanded="true">[접기]</button>
+        </div>
 
-        <ol>
+        <ol id="toc-list">
           <li><a href="#section1">개요</a></li>
           <li><a href="#section2">우리 팀이 모인 이유</a></li>
           <li><a href="#section3">우리 팀의 목표</a></li>
@@ -71,53 +77,73 @@
 
       <!-- 1. 개요 -->
       <section id="section1">
-        <h2><span>1.</span> 개요</h2>
-        <p>
-          우리 팀은 각자 맡은 페이지를 만들어
-          하나의 포트폴리오 사이트로 연결하는 팀입니다.
-        </p>
+        <h2>
+          <span>1.</span> 개요
+          <button type="button" class="fold-btn" data-target="body-1" aria-controls="body-1" aria-expanded="true">[접기]</button>
+        </h2>
+        <div class="section-body" id="body-1">
+          <p>
+            우리 팀은 각자 맡은 페이지를 만들어
+            하나의 포트폴리오 사이트로 연결하는 팀입니다.
+          </p>
+        </div>
       </section>
 
       <!-- 2. 팀이 모인 이유 -->
       <section id="section2">
-        <h2><span>2.</span> 우리 팀이 모인 이유</h2>
-        <p>
-          우리 팀이 함께 프로젝트를 하게 된 이유를 작성하는 공간입니다.
-        </p>
+        <h2>
+          <span>2.</span> 우리 팀이 모인 이유
+          <button type="button" class="fold-btn" data-target="body-2" aria-controls="body-2" aria-expanded="true">[접기]</button>
+        </h2>
+        <div class="section-body" id="body-2">
+          <p>
+            우리 팀이 함께 프로젝트를 하게 된 이유를 작성하는 공간입니다.
+          </p>
+        </div>
       </section>
 
       <!-- 3. 팀의 목표 -->
       <section id="section3">
-        <h2><span>3.</span> 우리 팀의 목표</h2>
-        <p>
-          우리 팀의 목표는 나무위키 같은 사이트를 만드는 것이다.
-        </p>
+        <h2>
+          <span>3.</span> 우리 팀의 목표
+          <button type="button" class="fold-btn" data-target="body-3" aria-controls="body-3" aria-expanded="true">[접기]</button>
+        </h2>
+        <div class="section-body" id="body-3">
+          <p>
+            우리 팀의 목표는 나무위키 같은 사이트를 만드는 것이다.
+          </p>
+        </div>
       </section>
 
       <!-- 4. 활동 방향 -->
       <section id="section4">
-        <h2><span>4.</span> 우리의 활동 방향</h2>
+        <h2>
+          <span>4.</span> 우리의 활동 방향
+          <button type="button" class="fold-btn" data-target="body-4" aria-controls="body-4" aria-expanded="true">[접기]</button>
+        </h2>
+        <div class="section-body" id="body-4">
 
-        <p>
-          각자 맡은 페이지를 제작하고 서로의 작업물을 확인하면서
-          하나의 웹사이트로 완성합니다.
-        </p>
+          <p>
+            각자 맡은 페이지를 제작하고 서로의 작업물을 확인하면서
+            하나의 웹사이트로 완성합니다.
+          </p>
 
-        <button
-          id="work-button"
-          type="button"
-          aria-controls="work-list"
-          aria-expanded="true"
-          hidden
-        >
-          협업 과정 접기
-        </button>
+          <button
+            id="work-button"
+            type="button"
+            aria-controls="work-list"
+            aria-expanded="true"
+            hidden
+          >
+            [협업 과정 접기]
+          </button>
 
-        <ol id="work-list">
-          <li>각자 맡은 페이지를 만듭니다.</li>
-          <li>서로의 변경 내용을 확인합니다.</li>
-          <li>페이지를 하나로 연결하고 함께 테스트합니다.</li>
-        </ol>
+          <ol id="work-list">
+            <li>각자 맡은 페이지를 만듭니다.</li>
+            <li>서로의 변경 내용을 확인합니다.</li>
+            <li>페이지를 하나로 연결하고 함께 테스트합니다.</li>
+          </ol>
+        </div>
       </section>
 
       <!-- 하단 정보 -->
@@ -125,7 +151,7 @@
         이 문서는 팀 프로젝트의 소개 문서입니다.
       </div>
 
-      <a href="./page.html" class="back-link">
+      <a href="./index.html" class="back-link">
         ← 메인으로 돌아가기
       </a>
 
